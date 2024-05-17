@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
-          backgroundColor: Colors.amber[100],
+          backgroundColor: Colors.deepPurpleAccent[100],
           elevation: 0,
           centerTitle: true,
         ),
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 101, 249, 106),
+                    backgroundColor: const Color.fromARGB(255, 101, 249, 106),
                   ),
                   child: const Text("Login")),
             ),
@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const SignUpScreen()));
@@ -82,7 +82,8 @@ class LoginScreen extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
-                          shape: MaterialStateProperty.all(CircleBorder())),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder())),
                       child: CircleAvatar(
                           child: Image.asset('assets/icons/google.png'))),
                   const SizedBox(
@@ -91,7 +92,8 @@ class LoginScreen extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
-                          shape: MaterialStateProperty.all(CircleBorder())),
+                          shape:
+                              MaterialStateProperty.all(const CircleBorder())),
                       child: CircleAvatar(
                           child: Image.asset('assets/icons/facebook.png')))
                 ],
