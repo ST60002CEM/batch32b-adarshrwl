@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                 TextSpan(
                   text: 'Sign up',
                   style: const TextStyle(
-                    color: Colors.blue, // You can customize the color
+                    color: Colors.blue, 
                     fontWeight: FontWeight.bold,
                     decoration: TextDecoration.underline,
                   ),
