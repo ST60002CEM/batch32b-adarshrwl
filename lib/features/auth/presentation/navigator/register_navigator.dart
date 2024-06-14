@@ -6,6 +6,6 @@ class RegisterViewNavigator {}
 
 mixin RegisterViewRoute {
   openRegisterView() {
-    NavigateRoute.pushRoute(const RegisterView());
+    NavigateRoute.pushRoute(const SignUpScreen());
   }
 }

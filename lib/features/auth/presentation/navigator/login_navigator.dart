@@ -10,6 +10,6 @@ class LoginViewNavigator with RegisterViewRoute, HomeViewRoute {}
 
 mixin LoginViewRoute {
   openLoginView() {
-    NavigateRoute.popAndPushRoute(const LoginView());
+    NavigateRoute.popAndPushRoute(const LoginScreen());
   }
 }

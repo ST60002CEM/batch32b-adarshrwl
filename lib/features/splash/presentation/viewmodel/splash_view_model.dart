@@ -1,25 +1,25 @@
-// lib/providers/splash_screen_notifier.dart
-
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:snapdwell/features/splash/presentation/navigator/splash_navigator.dart';
 
-
-final splashNavigatorProvider = Provider((ref) => SplashNavigator());
-
-final splashScreenNotifierProvider = StateNotifierProvider<SplashScreenNotifier, void>((ref) {
-  final navigator = ref.read(splashNavigatorProvider);
-  return SplashScreenNotifier(navigator);
+final splashViewModelProvider = StateNotifierProvider<SplashViewModel,void>((ref) {
+  final navigator = ref.read(splashViewNavigatorProvider);
+  return SplashViewModel(navigator);
 });
 
-class SplashScreenNotifier extends StateNotifier<void> {
-  final SplashNavigator navigator;
+class SplashViewModel extends StateNotifier<void> {
+  SplashViewModel(this.navigator) : super(null);
 
-  SplashScreenNotifier(this.navigator) : super(null);
+  final SplashViewNavigator navigator;
 
-  void navigateToLogin(BuildContext context) {
-    Future.delayed(const Duration(seconds: 3), () {
-      navigator.navigateToLogin(context);
-    });
+  // open the login view
+  void openLoginView() {
+    Future.delayed(
+      const Duration(seconds: 2),
+          () {
+        navigator.openLoginView();
+      },
+    );
   }
+
+  void openHomeView(){}
 }
