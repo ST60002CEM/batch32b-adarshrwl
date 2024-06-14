@@ -27,4 +27,6 @@ class AuthState {
 
   @override
   String toString() => 'AuthState(isLoading: $isLoading, error: $error)';
+
+  void registerUser(Map<String, String> user) {}
 }

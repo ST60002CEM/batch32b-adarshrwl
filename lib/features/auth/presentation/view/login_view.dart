@@ -1,23 +1,25 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:snapdwell/features/auth/presentation/view/register_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:snapdwell/features/auth/presentation/viewmodel/auth_view_model.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
-
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameEmailController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool obscureTextVal = true;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final authViewModel = ref.watch(authViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
-                    controller: _usernameEmailController,
+                    controller: _emailController,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
@@ -68,9 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      labelText: "Username/Email",
+                      labelText: "Email",
                       hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -99,14 +107,27 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter password';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      // Handle login action
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await ref
+                            .read(authViewModelProvider.notifier)
+                            .loginUser(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 101, 249, 106),
@@ -138,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
+                            // Navigate to the sign up screen
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
@@ -162,7 +184,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Handle Google login action
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(), backgroundColor: Colors.white,
+                          shape: const CircleBorder(),
+                          backgroundColor: Colors.white,
                           padding: const EdgeInsets.all(15), // <-- Button color
                         ),
                         child: Image.asset(
@@ -176,7 +199,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           // Handle Facebook login action
                         },
                         style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(), backgroundColor: Colors.white,
+                          shape: const CircleBorder(),
+                          backgroundColor: Colors.white,
                           padding: const EdgeInsets.all(15), // <-- Button color
                         ),
                         child: Image.asset(

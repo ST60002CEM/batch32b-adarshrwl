@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:snapdwell/app/navigator_key/navigator_key.dart';
-import 'package:snapdwell/screen/splash_screen.dart';
+import 'package:snapdwell/features/auth/presentation/view/login_view.dart';
+
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: AppNavigator.navigatorKey,
-      home: const SplashScreen(),
+      home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
       title: 'SnapDwell',
     );

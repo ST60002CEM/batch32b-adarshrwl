@@ -1,25 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:snapdwell/features/auth/domain/entity/auth_entity.dart';
+import 'package:snapdwell/features/auth/presentation/viewmodel/auth_view_model.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
-  static const mybox = SizedBox(height: 25);
+class SignUpScreen extends ConsumerStatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
   final _phoneController = TextEditingController();
 
   List<String> typeOfAccount = <String>['Buyer', 'Seller'];
   String dropDownValue = 'Buyer';
   bool isChecked = false;
   bool obscureTextVal = true;
+
+  void registerUser(AuthViewModel authViewModel) {
+    if (_formKey.currentState!.validate()) {
+      var user = AuthEntity(
+        username: _usernameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        phone: _phoneController.text,
+        accountType: dropDownValue,
+      );
+
+      ref.read(authViewModelProvider.notifier).registerUser(user);
+
+      print('User Details: $user');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('User registered successfully')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +100,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintStyle:
                           const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -101,6 +127,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintStyle:
                           const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter email';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -134,28 +166,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 7),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
-                  child: TextFormField(
-                    controller: _confirmPasswordController,
-                    obscureText: obscureTextVal,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      labelText: "Confirm Password",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
-                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter password';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -178,6 +194,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintStyle:
                           const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter phone number';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 const SizedBox(height: 7),
@@ -236,7 +258,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   child: MaterialButton(
-                    onPressed: isChecked ? () {} : null,
+                    onPressed: isChecked
+                        ? () => registerUser(ref.read(authViewModelProvider
+                            as ProviderListenable<AuthViewModel>))
+                        : null,
                     color:
                         isChecked ? Colors.deepPurpleAccent[200] : Colors.white,
                     textColor: isChecked ? Colors.white : Colors.grey,
