@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {},
                       style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all(const CircleBorder())),
+                              WidgetStateProperty.all(const CircleBorder())),
                       child: CircleAvatar(
                           child: Image.asset('assets/icons/google.png'))),
                   const SizedBox(
@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {},
                       style: ButtonStyle(
                           shape:
-                              MaterialStateProperty.all(const CircleBorder())),
+                              WidgetStateProperty.all(const CircleBorder())),
                       child: CircleAvatar(
                           child: Image.asset('assets/icons/facebook.png')))
                 ],
