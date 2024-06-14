@@ -10,7 +10,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: AppNavigator.navigatorKey,
-      home:  const SplashView(),
+      home:  const SplashScreen(),
       debugShowCheckedModeBanner: false,
       title: 'Fund Nepal',
     );

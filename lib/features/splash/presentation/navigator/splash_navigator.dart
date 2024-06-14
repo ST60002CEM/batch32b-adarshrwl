@@ -1,8 +1,12 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:snapdwell/features/auth/presentation/navigator/login_navigator.dart';
+// lib/navigation/splash_navigator.dart
 
-final splashViewNavigatorProvider = Provider((ref) => SplashViewNavigator());
+import 'dart:async';
+import 'package:flutter/material.dart';
 
-class SplashViewNavigator with LoginViewRoute{}
-
-mixin SplashViewRoute{}
+class SplashNavigator {
+  void navigateToLogin(BuildContext context) {
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacementNamed('/login');
+    });
+  }
+}

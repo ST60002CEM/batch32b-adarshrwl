@@ -1,57 +1,35 @@
+// lib/views/splash_screen.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:snapdwell/features/splash/presentation/viewmodel/splash_view_model.dart';
 
-class SplashView extends ConsumerStatefulWidget {
-  const SplashView({super.key});
+class SplashScreen extends ConsumerStatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  ConsumerState<SplashView> createState() => _SplashViewState();
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashViewState extends ConsumerState<SplashView> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
-    ref.read(splashViewModelProvider.notifier).openLoginView();
     super.initState();
+    ref.read(splashScreenNotifierProvider.notifier).navigateToLogin(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    return  Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 12),
+    return Scaffold(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'FundNepal',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: [
-                Image.asset('assets/images/fund_nepal_logo.png',
-                  // put width and height based on screen size
-                  width: screenWidth * 0.8 ,
-                  height: screenHeight * 0.3,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
+            Image.asset('assets/icons/logo.png', width: 100, height: 100),
             const SizedBox(height: 20),
           ],
         ),
       ),
-
     );
   }
 }
