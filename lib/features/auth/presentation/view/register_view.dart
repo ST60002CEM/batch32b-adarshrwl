@@ -259,8 +259,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   margin: const EdgeInsets.only(top: 10),
                   child: MaterialButton(
                     onPressed: isChecked
-                        ? () => registerUser(ref.read(authViewModelProvider
-                            as ProviderListenable<AuthViewModel>))
+                        ? () => registerUser(ref.read(authViewModelProvider.notifier))
                         : null,
                     color:
                         isChecked ? Colors.deepPurpleAccent[200] : Colors.white,

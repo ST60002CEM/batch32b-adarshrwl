@@ -19,7 +19,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final authViewModel = ref.watch(authViewModelProvider);
 
     return Scaffold(
       appBar: AppBar(
