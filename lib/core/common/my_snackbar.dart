@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snapdwell/app/navigator_key/navigator_key.dart';
 
-
 showMySnackBar({
   required String message,
   Color? color
