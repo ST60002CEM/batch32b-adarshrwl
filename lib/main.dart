@@ -4,7 +4,6 @@ import 'package:snapdwell/app/app.dart';
 import 'package:snapdwell/core/networking/local/hive_service.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await HiveService().init();
   runApp(const ProviderScope(child: App()));

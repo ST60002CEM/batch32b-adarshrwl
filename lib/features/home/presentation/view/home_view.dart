@@ -20,7 +20,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("FundNepal"),
+        title: const Text("Snapdwell"),
       ),
       body: lstBottomScreen[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -37,7 +37,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
         currentIndex: _selectedIndex,
         onTap: (index) {
           setState(
-                () {
+            () {
               _selectedIndex = index;
             },
           );
