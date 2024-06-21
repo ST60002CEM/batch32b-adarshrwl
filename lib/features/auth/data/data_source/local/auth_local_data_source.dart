@@ -4,8 +4,9 @@ import 'package:snapdwell/core/failure/failure.dart';
 import 'package:snapdwell/core/networking/local/hive_service.dart';
 import 'package:snapdwell/features/auth/data/model/auth_hive_model.dart';
 import 'package:snapdwell/features/auth/domain/entity/auth_entity.dart';
+
 final authLocalDataSourceProvider = Provider(
-      (ref) => AuthLocalDataSource(
+  (ref) => AuthLocalDataSource(
     ref.read(hiveServiceProvider),
     ref.read(authHiveModelProvider),
   ),
@@ -27,15 +28,13 @@ class AuthLocalDataSource {
   }
 
   Future<Either<Failure, bool>> loginUser(
-      String email,
-      String password,
-      ) async {
+    String email,
+    String password,
+  ) async {
     try {
       return const Right(true);
     } catch (e) {
       return Left(Failure(error: e.toString()));
     }
   }
-
-  Future<Either<Failure, AuthEntity>> getCurrentUser() {}
 }

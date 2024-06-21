@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:snapdwell/features/auth/presentation/view/register_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:snapdwell/features/auth/presentation/viewmodel/auth_view_model.dart';
 
@@ -62,6 +61,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
+                    key: const ValueKey('Email'),
                     controller: _emailController,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(
@@ -89,7 +89,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
-                                          key: const ValueKey('password'),
+                    key: const ValueKey('password'),
                     controller: _passwordController,
                     obscureText: obscureTextVal,
                     decoration: InputDecoration(
@@ -173,12 +173,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             // Navigate to the sign up screen
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen(),
-                              ),
-                            );
+                            ref
+                                .read(authViewModelProvider.notifier)
+                                .openRegisterView();
                           },
                       ),
                     ],
