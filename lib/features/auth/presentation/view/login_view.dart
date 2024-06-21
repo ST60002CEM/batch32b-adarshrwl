@@ -10,6 +10,7 @@ class LoginScreen extends ConsumerStatefulWidget {
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
@@ -58,11 +59,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 SizedBox(height: size.height * 0.04),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -70,7 +73,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Email",
-                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle:
+                          const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -82,12 +86,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 7),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
+                                          key: const ValueKey('password'),
                     controller: _passwordController,
                     obscureText: obscureTextVal,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -95,9 +102,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Password",
-                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle:
+                          const TextStyle(color: Colors.black45, fontSize: 19),
                       suffixIcon: IconButton(
-                        icon: Icon(obscureTextVal ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(obscureTextVal
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                         color: Colors.black,
                         onPressed: () {
                           setState(() {
@@ -130,14 +140,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 101, 249, 106),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
                     child: const Text(
                       "Login",
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                 ),

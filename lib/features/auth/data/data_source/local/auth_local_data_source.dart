@@ -36,4 +36,6 @@ class AuthLocalDataSource {
       return Left(Failure(error: e.toString()));
     }
   }
+
+  Future<Either<Failure, AuthEntity>> getCurrentUser() {}
 }
