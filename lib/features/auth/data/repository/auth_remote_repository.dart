@@ -23,8 +23,8 @@ class AuthRemoteRepository implements IAuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> registerUser(AuthEntity student) {
-    return _authRemoteDataSource.registerStudent(student);
+  Future<Either<Failure, bool>> registerUser(AuthEntity user) {
+    return _authRemoteDataSource.registerUser(user);
   }
 
   @override
