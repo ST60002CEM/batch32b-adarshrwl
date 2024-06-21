@@ -15,7 +15,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _phoneController = TextEditingController();
+  final _firstnameController = TextEditingController();
+  final _lastnameController = TextEditingController();
 
   List<String> typeOfAccount = <String>['Buyer', 'Seller'];
   String dropDownValue = 'Buyer';
@@ -28,7 +29,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         username: _usernameController.text,
         email: _emailController.text,
         password: _passwordController.text,
-        phone: _phoneController.text,
+        firstname: _firstnameController.text,
+        lastname: _lastnameController.text,
         accountType: dropDownValue,
       );
 
@@ -179,7 +181,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
-                    controller: _phoneController,
+                    controller: _firstnameController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(

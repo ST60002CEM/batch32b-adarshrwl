@@ -8,7 +8,8 @@ class AuthApiModel {
   final String id;
   final String email;
   final String username;
-  final String phone;
+  final String firstname;
+  final String lastname;
   final String? password;
   final String accountType;
 
@@ -16,7 +17,8 @@ class AuthApiModel {
     required this.id,
     required this.email,
     required this.username,
-    required this.phone,
+    required this.firstname,
+    required this.lastname,
     required this.password,
     required this.accountType,
   });
@@ -31,7 +33,8 @@ class AuthApiModel {
     return AuthEntity(
         username: username,
         email: email,
-        phone: phone,
+        firstname: firstname,
+        lastname: lastname,
         password: password ?? '',
         accountType: accountType);
   }
