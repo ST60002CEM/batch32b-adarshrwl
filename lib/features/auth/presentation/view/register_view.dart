@@ -85,13 +85,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 SizedBox(height: size.height * 0.04),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
                     controller: _usernameController,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -99,8 +97,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Username",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -112,13 +109,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 const SizedBox(height: 7),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -126,8 +121,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Email",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -139,14 +133,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 const SizedBox(height: 7),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
                     controller: _passwordController,
                     obscureText: obscureTextVal,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -154,12 +146,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Password",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                       suffixIcon: IconButton(
-                        icon: Icon(obscureTextVal
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                        icon: Icon(obscureTextVal ? Icons.visibility : Icons.visibility_off),
                         color: Colors.black,
                         onPressed: () {
                           setState(() {
@@ -178,27 +167,23 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 const SizedBox(height: 7),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: TextFormField(
                     controller: _firstnameController,
-                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(15),
                       ),
-                      labelText: "Phone number",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
+                      labelText: "First Name",
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter phone number';
+                        return 'Please enter first name';
                       }
                       return null;
                     },
@@ -206,8 +191,31 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                 ),
                 const SizedBox(height: 7),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
+                  child: TextFormField(
+                    controller: _lastnameController,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      labelText: "Last Name",
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter last name';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                const SizedBox(height: 7),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
                   child: DropdownButtonFormField<String>(
                     value: dropDownValue,
                     style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
@@ -216,16 +224,14 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         dropDownValue = newValue!;
                       });
                     },
-                    items: typeOfAccount
-                        .map<DropdownMenuItem<String>>((String value) {
+                    items: typeOfAccount.map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
                     }).toList(),
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -233,8 +239,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       labelText: "Type of Account",
-                      hintStyle:
-                          const TextStyle(color: Colors.black45, fontSize: 19),
+                      hintStyle: const TextStyle(color: Colors.black45, fontSize: 19),
                       prefixIcon: const Icon(Icons.house),
                     ),
                   ),
@@ -263,14 +268,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     onPressed: isChecked
                         ? () => registerUser(ref.read(authViewModelProvider.notifier))
                         : null,
-                    color:
-                        isChecked ? Colors.deepPurpleAccent[200] : Colors.white,
+                    color: isChecked ? Colors.deepPurpleAccent[200] : Colors.white,
                     textColor: isChecked ? Colors.white : Colors.grey,
                     disabledColor: const Color.fromARGB(255, 186, 146, 255),
                     child: const Text(
                       'Confirm',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

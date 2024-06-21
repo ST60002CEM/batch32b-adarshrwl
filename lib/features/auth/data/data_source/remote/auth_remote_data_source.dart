@@ -23,7 +23,7 @@ class AuthRemoteDataSource {
 
   Future<Either<Failure, bool>> registerStudent(AuthEntity user) async {
     try {
-      Response response = await dio.post(
+      var response = await dio.post(
         ApiEndpoints.register,
         data: {
           "id":user.id,
@@ -56,7 +56,7 @@ class AuthRemoteDataSource {
   }
 
 
-  Future<Either<Failure, bool>> loginStudent(
+  Future<Either<Failure, bool>> loginUser(
     String username,
     String password,
   ) async {
