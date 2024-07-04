@@ -29,6 +29,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          height: size.height,
           padding: const EdgeInsets.all(16.0),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -43,6 +44,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Form(
             key: _formKey,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: size.height * 0.03),
                 const Align(

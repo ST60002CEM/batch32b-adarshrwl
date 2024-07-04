@@ -11,4 +11,9 @@ class ApiEndpoints {
   static const String login = "user/login";
   static const String register = "user/create";
   static const String getCurrentUser = "user/me";
+    static const String pagination = "products/pagination";
+  static const String photos = "photos";
+    static const String imageUrl = "http://10.0.2.2:5001/products/";
+
+  static const limitPage = 20;
 }

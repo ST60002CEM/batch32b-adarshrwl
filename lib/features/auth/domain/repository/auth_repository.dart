@@ -1,12 +1,23 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:snapdwell/core/common/internetchecker/internetChecker.dart';
 
 import 'package:snapdwell/core/failure/failure.dart';
+import 'package:snapdwell/features/auth/data/data_source/remote/auth_remote_data_source.dart';
 import 'package:snapdwell/features/auth/data/repository/auth_remote_repository.dart';
 import 'package:snapdwell/features/auth/domain/entity/auth_entity.dart';
 
 final authRepositoryProvider = Provider<IAuthRepository>((ref) {
-  return ref.read(authRemoteRepositoryProvider);
+  final checkConnectivity = ref.read(connectivityStatusProvider);
+  if (checkConnectivity == ConnectivityStatus.isConnected) {
+    return AuthRemoteRepository(
+      ref.read(authRemoteDataSourceProvider),
+    );
+  } else {
+    return AuthRemoteRepository(
+      ref.read(authRemoteDataSourceProvider),
+    );
+  }
 });
 
 abstract class IAuthRepository {

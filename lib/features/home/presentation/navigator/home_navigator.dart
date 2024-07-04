@@ -1,13 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:snapdwell/app/navigator/navigator.dart';
 import 'package:snapdwell/features/home/presentation/view/home_view.dart';
+import 'package:snapdwell/features/home/presentation/view/pagination_view.dart';
 
-final homeViewNavigatorProvider = Provider((ref) => HomeNavigator());
+final homeViewNavigatorProvider =
+    Provider<HomeViewNavigator>((ref) => HomeViewNavigator());
 
-class HomeNavigator {}
+class HomeViewNavigator {}
 
 mixin HomeViewRoute {
-  openHomeView() {
+  void openHomeView() {
     NavigateRoute.pushRoute(const HomeView());
   }
 }
