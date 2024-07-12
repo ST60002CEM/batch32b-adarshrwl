@@ -54,8 +54,8 @@ class _HomeScreenState extends ConsumerState<HomeView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Logout'),
-          content: Text('You have been logged out due to shaking the device.'),
+          title: const Text('Logout'),
+          content: const Text('You have been logged out due to shaking the device.'),
           actions: <Widget>[
             TextButton(
               child: Text('OK'),
