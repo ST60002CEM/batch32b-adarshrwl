@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:snapdwell/app/constants/api_endpoints.dart';
+import 'package:snapdwell/features/auth/presentation/view/login_view.dart';
+import 'package:snapdwell/features/home/data/model/shake_detector.dart';
 import 'package:snapdwell/features/home/presentation/state/post_state.dart';
 import 'package:snapdwell/features/home/presentation/viewmodel/home_view_model.dart';
+import 'package:vibration/vibration.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -15,16 +18,21 @@ class _HomeScreenState extends ConsumerState<HomeView> {
   final ScrollController _scrollController = ScrollController();
   bool isLoading = false;
   int currentPage = 1;
+  late ShakeDetector _shakeDetector;
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
+
+    _shakeDetector = ShakeDetector(onPhoneShake: _handleLogout);
+    _shakeDetector.startListening();
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
+    _shakeDetector.stopListening();
     super.dispose();
   }
 
@@ -35,6 +43,35 @@ class _HomeScreenState extends ConsumerState<HomeView> {
       });
       _loadMorePosts();
     }
+  }
+
+  void _handleLogout() {
+    if (Vibration.hasVibrator() != null) {
+      Vibration.vibrate();
+    }
+    // Perform your logout logic here.
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Logout'),
+          content: Text('You have been logged out due to shaking the device.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                // Navigate to the LoginScreen and remove all previous routes
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> _loadMorePosts() async {
